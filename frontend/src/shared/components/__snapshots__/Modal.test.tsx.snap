@@ -1,0 +1,60 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Modal matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    aria-label="Settings"
+    aria-modal="true"
+    class="fixed inset-0 z-50 flex items-center justify-center bg-pale-sky-950/40 p-4"
+    role="dialog"
+  >
+    <div
+      class="w-full max-w-lg rounded-lg bg-white shadow-xl"
+    >
+      <div
+        class="flex items-center justify-between border-b border-pale-sky-100 px-5 py-3"
+      >
+        <h2
+          class="text-base font-semibold text-pale-sky-900"
+        >
+          Settings
+        </h2>
+        <button
+          aria-label="Close"
+          class="inline-flex h-9 w-9 items-center justify-center rounded-md transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-40 disabled:cursor-not-allowed text-pale-sky-700 hover:bg-pale-sky-100 focus-visible:ring-pale-sky-300 "
+          title="Close"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            class="lucide lucide-x h-4 w-4"
+            fill="none"
+            height="24"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M18 6 6 18"
+            />
+            <path
+              d="m6 6 12 12"
+            />
+          </svg>
+        </button>
+      </div>
+      <div
+        class="px-5 py-4"
+      >
+        <p>
+          Content
+        </p>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

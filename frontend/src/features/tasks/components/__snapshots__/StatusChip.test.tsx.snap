@@ -1,0 +1,31 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`StatusChip matches snapshot for Completed 1`] = `
+<DocumentFragment>
+  <span
+    class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-medium bg-celadon-100 text-celadon-800 border-celadon-200"
+  >
+    Completed
+  </span>
+</DocumentFragment>
+`;
+
+exports[`StatusChip matches snapshot for InProgress 1`] = `
+<DocumentFragment>
+  <span
+    class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-medium bg-pale-sky-100 text-pale-sky-800 border-pale-sky-200"
+  >
+    In Progress
+  </span>
+</DocumentFragment>
+`;
+
+exports[`StatusChip matches snapshot for Pending 1`] = `
+<DocumentFragment>
+  <span
+    class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-medium bg-pearl-beige-100 text-pearl-beige-800 border-pearl-beige-200"
+  >
+    Pending
+  </span>
+</DocumentFragment>
+`;

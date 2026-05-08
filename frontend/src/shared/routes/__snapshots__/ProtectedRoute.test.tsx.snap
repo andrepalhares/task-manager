@@ -1,0 +1,19 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ProtectedRoute matches snapshot for anonymous users 1`] = `
+<DocumentFragment>
+  <span
+    data-replace="true"
+    data-testid="navigate"
+    data-to="/"
+  />
+</DocumentFragment>
+`;
+
+exports[`ProtectedRoute matches snapshot for authenticated users 1`] = `
+<DocumentFragment>
+  <div>
+    Secret area
+  </div>
+</DocumentFragment>
+`;

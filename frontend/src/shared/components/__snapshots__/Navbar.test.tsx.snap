@@ -1,0 +1,30 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Navbar matches snapshot for anonymous users 1`] = `
+<DocumentFragment>
+  <header
+    class="sticky top-0 z-30 border-b border-pale-sky-100 bg-white/90 backdrop-blur"
+  >
+    <div
+      class="mx-auto flex max-w-5xl items-center justify-between px-4 py-3"
+    >
+      <a
+        class="text-lg font-semibold text-pale-sky-800 hover:text-pale-sky-900"
+        data-discover="true"
+        href="/"
+      >
+        Tasks
+      </a>
+      <div
+        class="flex items-center gap-3"
+      >
+        <button
+          class="inline-flex items-center justify-center gap-2 rounded-md px-4 py-2 text-sm font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed bg-pale-sky-600 text-white hover:bg-pale-sky-700 focus-visible:ring-pale-sky-500 "
+        >
+          Login
+        </button>
+      </div>
+    </div>
+  </header>
+</DocumentFragment>
+`;

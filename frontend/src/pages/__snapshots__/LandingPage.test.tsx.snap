@@ -1,0 +1,50 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`LandingPage matches snapshot for anonymous users 1`] = `
+<DocumentFragment>
+  <main
+    class="mx-auto flex max-w-3xl flex-col items-center px-4 py-16 text-center"
+  >
+    <h1
+      class="text-4xl font-bold tracking-tight text-pale-sky-900 sm:text-5xl"
+    >
+      Task Manager
+    </h1>
+    <p
+      class="mt-4 max-w-xl text-base text-pale-sky-700 sm:text-lg"
+    >
+      A simple application to track your tasks.
+    </p>
+    <div
+      class="mt-8"
+    >
+      <button
+        class="inline-flex items-center justify-center gap-2 rounded-md px-4 py-2 text-sm font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed bg-pale-sky-600 text-white hover:bg-pale-sky-700 focus-visible:ring-pale-sky-500 "
+      >
+        Create account
+      </button>
+    </div>
+    <p
+      class="mt-3 text-sm text-pale-sky-600"
+    >
+      Already have an account? Use the 
+      <span
+        class="font-medium"
+      >
+        Login
+      </span>
+       button at the top right.
+    </p>
+  </main>
+</DocumentFragment>
+`;
+
+exports[`LandingPage matches snapshot for authenticated users 1`] = `
+<DocumentFragment>
+  <span
+    data-replace="true"
+    data-testid="navigate"
+    data-to="/tasks"
+  />
+</DocumentFragment>
+`;

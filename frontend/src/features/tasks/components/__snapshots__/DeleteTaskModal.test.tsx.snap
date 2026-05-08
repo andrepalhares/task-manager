@@ -1,0 +1,82 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`DeleteTaskModal matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    aria-label="Delete task"
+    aria-modal="true"
+    class="fixed inset-0 z-50 flex items-center justify-center bg-pale-sky-950/40 p-4"
+    role="dialog"
+  >
+    <div
+      class="w-full max-w-lg rounded-lg bg-white shadow-xl"
+    >
+      <div
+        class="flex items-center justify-between border-b border-pale-sky-100 px-5 py-3"
+      >
+        <h2
+          class="text-base font-semibold text-pale-sky-900"
+        >
+          Delete task
+        </h2>
+        <button
+          aria-label="Close"
+          class="inline-flex h-9 w-9 items-center justify-center rounded-md transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-40 disabled:cursor-not-allowed text-pale-sky-700 hover:bg-pale-sky-100 focus-visible:ring-pale-sky-300 "
+          title="Close"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            class="lucide lucide-x h-4 w-4"
+            fill="none"
+            height="24"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M18 6 6 18"
+            />
+            <path
+              d="m6 6 12 12"
+            />
+          </svg>
+        </button>
+      </div>
+      <div
+        class="px-5 py-4"
+      >
+        <p
+          class="text-sm text-pale-sky-800"
+        >
+          Are you sure you want to delete 
+          <span
+            class="font-medium"
+          >
+            "Write tests"
+          </span>
+          ? This action cannot be undone.
+        </p>
+      </div>
+      <div
+        class="flex justify-end gap-2 border-t border-pale-sky-100 bg-pale-sky-50 px-5 py-3 rounded-b-lg"
+      >
+        <button
+          class="inline-flex items-center justify-center gap-2 rounded-md px-4 py-2 text-sm font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed bg-white text-pale-sky-800 border border-pale-sky-200 hover:bg-pale-sky-50 focus-visible:ring-pale-sky-300 "
+        >
+          Cancel
+        </button>
+        <button
+          class="inline-flex items-center justify-center gap-2 rounded-md px-4 py-2 text-sm font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed bg-soft-blossom-600 text-white hover:bg-soft-blossom-700 focus-visible:ring-soft-blossom-500 "
+        >
+          Delete
+        </button>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

@@ -1,0 +1,12 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Label matches snapshot 1`] = `
+<DocumentFragment>
+  <label
+    class="block text-sm font-medium text-pale-sky-900 mb-1 "
+    for="name"
+  >
+    Name
+  </label>
+</DocumentFragment>
+`;

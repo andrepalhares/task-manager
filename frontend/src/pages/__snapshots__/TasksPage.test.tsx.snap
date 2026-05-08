@@ -1,0 +1,56 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`TasksPage matches snapshot while loading 1`] = `
+<DocumentFragment>
+  <main
+    class="mx-auto max-w-5xl px-4 py-8"
+  >
+    <div
+      class="mb-6 flex items-start justify-between gap-4"
+    >
+      <div>
+        <h1
+          class="text-2xl font-bold text-pale-sky-900"
+        >
+          Tasks
+        </h1>
+        <p
+          class="mt-1 text-sm text-pale-sky-600"
+        >
+          —
+        </p>
+      </div>
+      <button
+        class="inline-flex items-center justify-center gap-2 rounded-md px-4 py-2 text-sm font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed bg-pale-sky-600 text-white hover:bg-pale-sky-700 focus-visible:ring-pale-sky-500 "
+      >
+        <svg
+          aria-hidden="true"
+          class="lucide lucide-plus h-4 w-4"
+          fill="none"
+          height="24"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M5 12h14"
+          />
+          <path
+            d="M12 5v14"
+          />
+        </svg>
+        New task
+      </button>
+    </div>
+    <p
+      class="py-12 text-center text-sm text-pale-sky-600"
+    >
+      Loading tasks…
+    </p>
+  </main>
+</DocumentFragment>
+`;

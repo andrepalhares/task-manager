@@ -1,0 +1,150 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`TaskFormModal matches snapshot in create mode 1`] = `
+<DocumentFragment>
+  <div
+    aria-label="Create a new task"
+    aria-modal="true"
+    class="fixed inset-0 z-50 flex items-center justify-center bg-pale-sky-950/40 p-4"
+    role="dialog"
+  >
+    <div
+      class="w-full max-w-lg rounded-lg bg-white shadow-xl"
+    >
+      <div
+        class="flex items-center justify-between border-b border-pale-sky-100 px-5 py-3"
+      >
+        <h2
+          class="text-base font-semibold text-pale-sky-900"
+        >
+          Create a new task
+        </h2>
+        <button
+          aria-label="Close"
+          class="inline-flex h-9 w-9 items-center justify-center rounded-md transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-40 disabled:cursor-not-allowed text-pale-sky-700 hover:bg-pale-sky-100 focus-visible:ring-pale-sky-300 "
+          title="Close"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            class="lucide lucide-x h-4 w-4"
+            fill="none"
+            height="24"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M18 6 6 18"
+            />
+            <path
+              d="m6 6 12 12"
+            />
+          </svg>
+        </button>
+      </div>
+      <div
+        class="px-5 py-4"
+      >
+        <div
+          class="space-y-4"
+        >
+          <div>
+            <label
+              class="block text-sm font-medium text-pale-sky-900 mb-1 "
+              for="task-title"
+            >
+              Title
+            </label>
+            <input
+              class="w-full rounded-md border border-pale-sky-200 bg-white px-3 py-2 text-sm text-pale-sky-900 placeholder:text-pale-sky-400 focus:outline-none focus:border-pale-sky-500 focus:ring-2 focus:ring-pale-sky-200 disabled:bg-pale-sky-50 disabled:text-pale-sky-700 disabled:cursor-not-allowed "
+              id="task-title"
+              maxlength="200"
+              required=""
+              type="text"
+              value=""
+            />
+          </div>
+          <div>
+            <label
+              class="block text-sm font-medium text-pale-sky-900 mb-1 "
+              for="task-description"
+            >
+              Description
+            </label>
+            <textarea
+              class="w-full rounded-md border border-pale-sky-200 bg-white px-3 py-2 text-sm text-pale-sky-900 placeholder:text-pale-sky-400 focus:outline-none focus:border-pale-sky-500 focus:ring-2 focus:ring-pale-sky-200 disabled:bg-pale-sky-50 disabled:text-pale-sky-700 disabled:cursor-not-allowed min-h-[100px] resize-y "
+              id="task-description"
+              maxlength="2000"
+            />
+          </div>
+          <div
+            class="grid grid-cols-1 gap-4 sm:grid-cols-2"
+          >
+            <div>
+              <label
+                class="block text-sm font-medium text-pale-sky-900 mb-1 "
+                for="task-status"
+              >
+                Status
+              </label>
+              <select
+                class="w-full rounded-md border border-pale-sky-200 bg-white px-3 py-2 text-sm text-pale-sky-900 focus:outline-none focus:border-pale-sky-500 focus:ring-2 focus:ring-pale-sky-200 disabled:bg-pale-sky-50 disabled:text-pale-sky-700 disabled:cursor-not-allowed"
+                id="task-status"
+              >
+                <option
+                  value="Pending"
+                >
+                  Pending
+                </option>
+                <option
+                  value="InProgress"
+                >
+                  In Progress
+                </option>
+                <option
+                  value="Completed"
+                >
+                  Completed
+                </option>
+              </select>
+            </div>
+            <div>
+              <label
+                class="block text-sm font-medium text-pale-sky-900 mb-1 "
+                for="task-due"
+              >
+                Due date
+              </label>
+              <input
+                class="w-full rounded-md border border-pale-sky-200 bg-white px-3 py-2 text-sm text-pale-sky-900 placeholder:text-pale-sky-400 focus:outline-none focus:border-pale-sky-500 focus:ring-2 focus:ring-pale-sky-200 disabled:bg-pale-sky-50 disabled:text-pale-sky-700 disabled:cursor-not-allowed "
+                id="task-due"
+                type="datetime-local"
+                value=""
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="flex justify-end gap-2 border-t border-pale-sky-100 bg-pale-sky-50 px-5 py-3 rounded-b-lg"
+      >
+        <button
+          class="inline-flex items-center justify-center gap-2 rounded-md px-4 py-2 text-sm font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed bg-white text-pale-sky-800 border border-pale-sky-200 hover:bg-pale-sky-50 focus-visible:ring-pale-sky-300 "
+        >
+          Cancel
+        </button>
+        <button
+          class="inline-flex items-center justify-center gap-2 rounded-md px-4 py-2 text-sm font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed bg-pale-sky-600 text-white hover:bg-pale-sky-700 focus-visible:ring-pale-sky-500 "
+        >
+          Create task
+        </button>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

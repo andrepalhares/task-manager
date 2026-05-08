@@ -1,0 +1,14 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`IconButton matches snapshot 1`] = `
+<DocumentFragment>
+  <button
+    aria-label="Delete task"
+    class="inline-flex h-9 w-9 items-center justify-center rounded-md transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-40 disabled:cursor-not-allowed text-pale-sky-700 hover:bg-pale-sky-100 focus-visible:ring-pale-sky-300 "
+    title="Delete task"
+    type="button"
+  >
+    ×
+  </button>
+</DocumentFragment>
+`;

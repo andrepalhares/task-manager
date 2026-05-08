@@ -64,3 +64,16 @@ body {
   background-color: var(--color-pale-sky-50);
   color: var(--color-pale-sky-900);
 }
+
+/* Interactive elements should show pointer cursor by default */
+button:not(:disabled),
+a,
+[role="button"]:not(:disabled),
+input[type="checkbox"],
+input[type="radio"] {
+  cursor: pointer;
+}
+
+html {
+  overflow-y: scroll;
+}

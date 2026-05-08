@@ -1,6 +1,6 @@
 namespace TaskManager.Domain.Exceptions.Users;
 
 public sealed class InvalidPasswordException()
-    : Exception("The password provided is incorrect.")
+    : DomainException(DomainErrorType.Unauthorized, "Invalid password", "The password provided is incorrect.")
 {
 }

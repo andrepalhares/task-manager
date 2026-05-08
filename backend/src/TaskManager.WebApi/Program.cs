@@ -4,8 +4,10 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using TaskManager.Application;
 using TaskManager.Application.Common.Interfaces;
+using TaskManager.Application.Common.Pagination;
 using TaskManager.Infrastructure;
 using TaskManager.Infrastructure.Security;
+using TaskManager.WebApi;
 using TaskManager.WebApi.Auth;
 using TaskManager.WebApi.Middleware;
 
@@ -17,8 +19,13 @@ builder.Services.AddOpenApi();
 builder.Services.AddControllers();
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
+
+var paginationSettings = builder.Configuration.GetSection("Pagination").Get<PaginationSettings>()
+    ?? throw new InvalidOperationException("Pagination settings are not configured.");
+builder.Services.AddSingleton(paginationSettings);
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<ICurrentUserService, CurrentUserService>();
+builder.Services.AddScoped<DataSeeder>();
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 builder.Services.AddProblemDetails();
 
@@ -65,5 +72,12 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
+
+// Seed demo user and sample tasks on startup (idempotent).
+using (var scope = app.Services.CreateScope())
+{
+    var seeder = scope.ServiceProvider.GetRequiredService<DataSeeder>();
+    await seeder.SeedAsync();
+}
 
 app.Run();

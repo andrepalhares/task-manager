@@ -1,0 +1,31 @@
+# Build artifacts
+bin/
+obj/
+*.dll
+*.pdb
+*.exe
+
+# IDE
+.vs/
+.vscode/
+*.user
+*.suo
+*.sln.iml
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# NuGet
+*.nupkg
+*.snupkg
+.nuget/
+
+# Visual Studio cache/options
+.vs/
+.vscode/
+
+# Environment files (but .env files are kept for testing)
+# backend.env
+# mongodb.env

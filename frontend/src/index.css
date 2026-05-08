@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+@theme {
+  /* Celadon — success / completed */
+  --color-celadon-50: #eafbf3;
+  --color-celadon-100: #d4f7e7;
+  --color-celadon-200: #a9efce;
+  --color-celadon-300: #7ee7b6;
+  --color-celadon-400: #54de9e;
+  --color-celadon-500: #29d685;
+  --color-celadon-600: #21ab6b;
+  --color-celadon-700: #188150;
+  --color-celadon-800: #105635;
+  --color-celadon-900: #082b1b;
+  --color-celadon-950: #061e13;
+
+  /* Pale Sky — primary brand / in-progress */
+  --color-pale-sky-50: #eaf3fb;
+  --color-pale-sky-100: #d4e6f7;
+  --color-pale-sky-200: #a9cdef;
+  --color-pale-sky-300: #7eb4e7;
+  --color-pale-sky-400: #549bde;
+  --color-pale-sky-500: #2982d6;
+  --color-pale-sky-600: #2168ab;
+  --color-pale-sky-700: #184e81;
+  --color-pale-sky-800: #103456;
+  --color-pale-sky-900: #081a2b;
+  --color-pale-sky-950: #06121e;
+
+  /* Soft Blossom — destructive / delete */
+  --color-soft-blossom-50: #fbeaee;
+  --color-soft-blossom-100: #f7d4dd;
+  --color-soft-blossom-200: #efa9bc;
+  --color-soft-blossom-300: #e77e9a;
+  --color-soft-blossom-400: #de5479;
+  --color-soft-blossom-500: #d62957;
+  --color-soft-blossom-600: #ab2146;
+  --color-soft-blossom-700: #811834;
+  --color-soft-blossom-800: #561023;
+  --color-soft-blossom-900: #2b0811;
+  --color-soft-blossom-950: #1e060c;
+
+  /* Pearl Beige — pending */
+  --color-pearl-beige-50: #fbf6ea;
+  --color-pearl-beige-100: #f7edd4;
+  --color-pearl-beige-200: #efdba9;
+  --color-pearl-beige-300: #e7c97e;
+  --color-pearl-beige-400: #deb754;
+  --color-pearl-beige-500: #d6a529;
+  --color-pearl-beige-600: #ab8421;
+  --color-pearl-beige-700: #816318;
+  --color-pearl-beige-800: #564210;
+  --color-pearl-beige-900: #2b2108;
+  --color-pearl-beige-950: #1e1706;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  background-color: var(--color-pale-sky-50);
+  color: var(--color-pale-sky-900);
+}

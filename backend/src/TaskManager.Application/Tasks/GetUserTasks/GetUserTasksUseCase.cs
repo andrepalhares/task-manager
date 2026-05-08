@@ -1,24 +1,26 @@
 using FluentValidation;
 using TaskManager.Application.Common.Interfaces;
+using TaskManager.Application.Common.Pagination;
 
 namespace TaskManager.Application.Tasks.GetUserTasks;
 
 public sealed class GetUserTasksUseCase : IUseCase<GetUserTasksInput, GetUserTasksOutput>
 {
-    private const int PAGE_SIZE = 10;
-
     private readonly IValidator<GetUserTasksInput> _validator;
     private readonly ITaskRepository _taskRepository;
     private readonly ICurrentUserService _currentUser;
+    private readonly PaginationSettings _paginationSettings;
 
     public GetUserTasksUseCase(
         IValidator<GetUserTasksInput> validator,
         ITaskRepository repository,
-        ICurrentUserService currentUser)
+        ICurrentUserService currentUser,
+        PaginationSettings paginationSettings)
     {
         _validator = validator;
         _taskRepository = repository;
         _currentUser = currentUser;
+        _paginationSettings = paginationSettings;
     }
 
     public async Task<GetUserTasksOutput> ExecuteAsync(
@@ -30,7 +32,7 @@ public sealed class GetUserTasksUseCase : IUseCase<GetUserTasksInput, GetUserTas
         var result = await _taskRepository.GetByUserIdPagedAsync(
             _currentUser.UserId,
             input.Page,
-            PAGE_SIZE,
+            _paginationSettings.PageSize,
             cancellationToken);
 
         var items = result.Items.Select(task =>

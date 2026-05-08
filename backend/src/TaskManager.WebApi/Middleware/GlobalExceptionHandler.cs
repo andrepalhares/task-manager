@@ -1,8 +1,7 @@
 using FluentValidation;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using TaskManager.Domain.Exceptions.Users;
-using TaskManager.Domain.Exceptions.Tasks;
+using TaskManager.Domain.Exceptions;
 
 namespace TaskManager.WebApi.Middleware;
 
@@ -33,59 +32,15 @@ public sealed class GlobalExceptionHandler : IExceptionHandler
                 await response.WriteAsJsonAsync(problemDetails, cancellationToken);
                 return true;
 
-            case EmailAlreadyTakenException emailException:
-                response.StatusCode = StatusCodes.Status409Conflict;
-                var conflictProblemDetails = new ProblemDetails
-                {
-                    Status = StatusCodes.Status409Conflict,
-                    Title = "Email Already Registered",
-                    Detail = emailException.Message,
-                    Type = "https://tools.ietf.org/html/rfc7231#section-6.5.8"
-                };
-                await response.WriteAsJsonAsync(conflictProblemDetails, cancellationToken);
-                return true;
-
-            case UserNotFoundException userException:
-                response.StatusCode = StatusCodes.Status401Unauthorized;
-                var userNotFoundProblemDetails = new ProblemDetails
-                {
-                    Status = StatusCodes.Status401Unauthorized,
-                    Title = "User not found",
-                    Detail = userException.Message,
-                    Type = "https://tools.ietf.org/html/rfc7235#section-3.1"
-                };
-                await response.WriteAsJsonAsync(userNotFoundProblemDetails, cancellationToken);
-                return true;
-
-            case InvalidPasswordException passwordException:
-                response.StatusCode = StatusCodes.Status401Unauthorized;
-                var invalidPasswordProblemDetails = new ProblemDetails
-                {
-                    Status = StatusCodes.Status401Unauthorized,
-                    Title = "Invalid password",
-                    Detail = passwordException.Message,
-                    Type = "https://tools.ietf.org/html/rfc7235#section-3.1"
-                };
-                await response.WriteAsJsonAsync(invalidPasswordProblemDetails, cancellationToken);
-                return true;
-
-            case TaskNotFoundException tnf:
-                response.StatusCode = StatusCodes.Status404NotFound;
+            case DomainException domainException:
+                var statusCode = MapStatusCode(domainException.ErrorType);
+                response.StatusCode = statusCode;
                 await response.WriteAsJsonAsync(new ProblemDetails
                 {
-                    Status = StatusCodes.Status404NotFound,
-                    Title = "Task not found",
-                    Detail = tnf.Message
-                }, cancellationToken);
-                return true;
-
-            case TaskAccessForbiddenException taf:
-                response.StatusCode = StatusCodes.Status403Forbidden;
-                await response.WriteAsJsonAsync(new ProblemDetails
-                {
-                    Status = StatusCodes.Status403Forbidden,
-                    Title = "Forbidden",
-                    Detail = "You do not have access to this task."
+                    Status = statusCode,
+                    Title = domainException.Title,
+                    Detail = domainException.Message,
+                    Type = MapType(domainException.ErrorType)
                 }, cancellationToken);
                 return true;
 
@@ -93,4 +48,22 @@ public sealed class GlobalExceptionHandler : IExceptionHandler
                 return false;
         }
     }
+
+    private static int MapStatusCode(DomainErrorType errorType) => errorType switch
+    {
+        DomainErrorType.NotFound => StatusCodes.Status404NotFound,
+        DomainErrorType.Conflict => StatusCodes.Status409Conflict,
+        DomainErrorType.Forbidden => StatusCodes.Status403Forbidden,
+        DomainErrorType.Unauthorized => StatusCodes.Status401Unauthorized,
+        _ => StatusCodes.Status500InternalServerError
+    };
+
+    private static string MapType(DomainErrorType errorType) => errorType switch
+    {
+        DomainErrorType.NotFound => "https://tools.ietf.org/html/rfc7231#section-6.5.4",
+        DomainErrorType.Conflict => "https://tools.ietf.org/html/rfc7231#section-6.5.8",
+        DomainErrorType.Forbidden => "https://tools.ietf.org/html/rfc7231#section-6.5.3",
+        DomainErrorType.Unauthorized => "https://tools.ietf.org/html/rfc7235#section-3.1",
+        _ => "about:blank"
+    };
 }

@@ -14,11 +14,12 @@ public class GetUserTasksUseCaseTests
     private readonly IValidator<GetUserTasksInput> _validator = new GetUserTasksInputValidator();
     private readonly ITaskRepository _repositorySubstitute = Substitute.For<ITaskRepository>();
     private readonly ICurrentUserService _currentUserSubstitute = Substitute.For<ICurrentUserService>();
+    private readonly PaginationSettings _paginationSettings = new() { PageSize = 10 };
     private readonly GetUserTasksUseCase _useCase;
 
     public GetUserTasksUseCaseTests()
     {
-        _useCase = new GetUserTasksUseCase(_validator, _repositorySubstitute, _currentUserSubstitute);
+        _useCase = new GetUserTasksUseCase(_validator, _repositorySubstitute, _currentUserSubstitute, _paginationSettings);
     }
 
     [Fact]

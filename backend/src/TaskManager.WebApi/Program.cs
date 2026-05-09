@@ -14,14 +14,14 @@ using TaskManager.WebApi.Middleware;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
+builder.Services.AddSwaggerDocumentation();
 builder.Services.AddControllers();
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
 
 var paginationSettings = builder.Configuration.GetSection("Pagination").Get<PaginationSettings>()
     ?? throw new InvalidOperationException("Pagination settings are not configured.");
+    
 builder.Services.AddSingleton(paginationSettings);
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<ICurrentUserService, CurrentUserService>();
@@ -60,20 +60,22 @@ builder.Services.AddAuthorization(options =>
 
 var app = builder.Build();
 
-app.UseExceptionHandler();
-
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
+
+app.UseExceptionHandler();
+
+await app.InitializeMongoIndexesAsync();
 
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 
-// Seed demo user and sample tasks on startup (idempotent).
+// Seed demo user and sample tasks on startup
 using (var scope = app.Services.CreateScope())
 {
     var seeder = scope.ServiceProvider.GetRequiredService<DataSeeder>();

@@ -46,8 +46,8 @@ Also each of these projects should have an associated unit test project.
 
 ## Domain
 Two aggregates:
-- User — Id (Guid), Email, Name, PasswordHash
-- Task — Id (Guid), Title, Description, Status (as enum), DueDate, UserId
+- User: Id (Guid), Email, Name, PasswordHash
+- Task: Id (Guid), Title, Description, Status (as enum), DueDate, UserId
 
 Both use private setters, static factory methods and smaller methods for individual state changes.
 

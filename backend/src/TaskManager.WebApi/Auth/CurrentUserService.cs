@@ -18,7 +18,7 @@ public sealed class CurrentUserService : ICurrentUserService
         get
         {
             var user = _httpContextAccessor.HttpContext?.User
-                ?? throw new InvalidOperationException("No HTTP context — current user is unavailable.");
+                ?? throw new InvalidOperationException("Current user is unavailable.");
 
             var sub =
                 user.FindFirst(JwtRegisteredClaimNames.Sub)?.Value

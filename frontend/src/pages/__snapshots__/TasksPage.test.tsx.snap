@@ -17,7 +17,7 @@ exports[`TasksPage matches snapshot while loading 1`] = `
         <p
           class="mt-1 text-sm text-pale-sky-600"
         >
-          —
+          ...
         </p>
       </div>
       <button

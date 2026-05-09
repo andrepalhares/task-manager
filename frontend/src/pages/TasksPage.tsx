@@ -50,7 +50,7 @@ export function TasksPage() {
           <p className="mt-1 text-sm text-pale-sky-600">
             {data
               ? `${data.totalCount} task${data.totalCount === 1 ? "" : "s"}`
-              : "—"}
+              : "..."}
           </p>
         </div>
         <Button onClick={() => setModal({ kind: "create" })}>

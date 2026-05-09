@@ -26,7 +26,7 @@ function App() {
           <Route path="*" element={<Navigate to="/not-found" replace />} />
         </Routes>
       </div>
-      <Toaster richColors position="top-right" />
+      <Toaster richColors position="top-right" closeButton visibleToasts={3} />
     </AuthProvider>
   );
 }

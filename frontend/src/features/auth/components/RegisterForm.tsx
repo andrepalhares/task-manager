@@ -22,7 +22,7 @@ export function RegisterForm({ onSuccess }: RegisterFormProps) {
     try {
       await authApi.register({ name, email, password });
       onSuccess();
-      toast.success("Account created — please log in.");
+      toast.success("Account created successfully. Please log in now.");
     } catch (err) {
       setError(
         extractApiErrorMessage(err, "Registration failed. Please try again."),

@@ -74,6 +74,12 @@ input[type="radio"] {
   cursor: pointer;
 }
 
-html {
-  overflow-y: scroll;
+html,
+body {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
 }

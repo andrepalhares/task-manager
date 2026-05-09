@@ -13,7 +13,6 @@ using TaskManager.WebApi.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 builder.Services.AddSwaggerDocumentation();
 builder.Services.AddControllers();
 builder.Services.AddApplication();
@@ -29,7 +28,6 @@ builder.Services.AddScoped<DataSeeder>();
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 builder.Services.AddProblemDetails();
 
-// Authentication setup
 var jwtSettings = builder.Configuration.GetSection("Jwt").Get<JwtSettings>();
 
 builder.Services
@@ -50,7 +48,6 @@ builder.Services
         };
     });
 
-// Authorization setup - secure-by-default fallback policy
 builder.Services.AddAuthorization(options =>
 {
     options.FallbackPolicy = new AuthorizationPolicyBuilder()
@@ -75,7 +72,6 @@ app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 
-// Seed demo user and sample tasks on startup
 using (var scope = app.Services.CreateScope())
 {
     var seeder = scope.ServiceProvider.GetRequiredService<DataSeeder>();

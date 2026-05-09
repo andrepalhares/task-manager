@@ -5,10 +5,6 @@ using TaskStatus = TaskManager.Domain.Entities.TaskStatus;
 
 namespace TaskManager.WebApi;
 
-/// <summary>
-/// Seeds a demo user + sample tasks on application startup.
-/// Idempotent: if the demo user already exists, nothing is inserted.
-/// </summary>
 [ExcludeFromCodeCoverage]
 public sealed class DataSeeder
 {

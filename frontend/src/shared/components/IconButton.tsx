@@ -11,7 +11,7 @@ const TONE_CLASSES: Record<Tone, string> = {
 
 type IconButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   tone?: Tone;
-  label: string; // accessible label, never visually rendered
+  label: string;
   children: ReactNode;
 };
 

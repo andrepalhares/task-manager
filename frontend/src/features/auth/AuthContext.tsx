@@ -28,7 +28,6 @@ function decodeUserFromToken(token: string): AuthUser | null {
   try {
     const claims = jwtDecode<DecodedJwt>(token);
     if (!claims.sub || !claims.email || !claims.name) return null;
-    // Defensive: reject already-expired tokens at boot
     if (claims.exp * 1000 < Date.now()) return null;
     return { id: claims.sub, email: claims.email, name: claims.name };
   } catch {
@@ -54,7 +53,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     navigate("/", { replace: true });
   }, [navigate]);
 
-  // Hand the logout function to the axios interceptor so it can fire on 401.
   useEffect(() => {
     registerUnauthorizedHandler(() => {
       localStorage.removeItem(TOKEN_STORAGE_KEY);

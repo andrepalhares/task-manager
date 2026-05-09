@@ -126,8 +126,6 @@ export function TasksPage() {
         taskTitle={modal.kind === "delete" ? modal.task.title : null}
         onClose={closeModal}
         onDeleted={() => {
-          // If the deleted task was the only one on its page (and not page 1),
-          // step back a page so the user doesn't land on an empty view.
           if (data && data.items.length === 1 && page > 1) setPage(page - 1);
           else refetch();
         }}

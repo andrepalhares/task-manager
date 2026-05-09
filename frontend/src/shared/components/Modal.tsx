@@ -7,9 +7,7 @@ type ModalProps = {
   onClose: () => void;
   title: string;
   children: ReactNode;
-  /** Optional footer slot for action buttons. */
   footer?: ReactNode;
-  /** Disables backdrop + ESC close. Useful while a request is in flight. */
   closeDisabled?: boolean;
 };
 

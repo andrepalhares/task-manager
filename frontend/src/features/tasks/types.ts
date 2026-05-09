@@ -11,7 +11,7 @@ export type TaskDto = {
   title: string;
   description: string | null;
   status: TaskStatus;
-  dueDate: string | null; // ISO datetime
+  dueDate: string | null;
   userId: string;
 };
 
@@ -26,7 +26,7 @@ export type CreateTaskRequest = {
   title: string;
   description: string | null;
   status: TaskStatus;
-  dueDate: string | null; // ISO datetime
+  dueDate: string | null;
 };
 
 export type UpdateTaskRequest = CreateTaskRequest;

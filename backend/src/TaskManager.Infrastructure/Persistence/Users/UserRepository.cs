@@ -7,8 +7,6 @@ namespace TaskManager.Infrastructure.Persistence.Users;
 
 public sealed class UserRepository : IUserRepository
 {
-    // MongoDB error code 11000 = E11000 duplicate key error.
-    // See: https://www.mongodb.com/docs/manual/reference/error-codes/
     private const int DuplicateKeyErrorCode = 11000;
 
     private readonly IMongoCollection<UserEntity> _collection;

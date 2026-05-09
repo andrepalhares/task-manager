@@ -1,15 +1,13 @@
 export type LoginResponse = {
   accessToken: string;
-  expiresAt: string; // ISO datetime
+  expiresAt: string;
 };
 
 export type DecodedJwt = {
-  // The backend issues these claims explicitly. Names follow the
-  // standard JWT registered claim names where applicable.
-  sub: string; // user id (Guid as string)
+  sub: string;
   email: string;
   name: string;
-  exp: number; // unix seconds
+  exp: number;
   iss?: string;
   aud?: string;
   jti?: string;

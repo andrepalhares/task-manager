@@ -10,7 +10,7 @@ export type TaskFormState = {
   title: string;
   description: string;
   status: TaskStatus;
-  dueDate: string; // datetime-local value (or "")
+  dueDate: string;
 };
 
 export const EMPTY_TASK_FORM: TaskFormState = {

@@ -16,10 +16,10 @@ type Mode = "create" | "view" | "edit";
 
 type TaskFormModalProps = {
   mode: Mode;
-  taskId?: string; // required for view/edit
+  taskId?: string;
   open: boolean;
   onClose: () => void;
-  onSaved: () => void; // called after a successful create/edit
+  onSaved: () => void;
 };
 
 const TITLES: Record<Mode, string> = {
@@ -40,7 +40,6 @@ export function TaskFormModal({
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // Load (or reset) form whenever the modal opens.
   useEffect(() => {
     if (!open) return;
     setError(null);

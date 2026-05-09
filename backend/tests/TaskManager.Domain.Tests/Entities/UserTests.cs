@@ -8,15 +8,12 @@ public class UserEntityTests
     [Fact]
     public void Create_WithValidArgs_ReturnsUserWithGeneratedId()
     {
-        // Arrange
         var email = "jane@example.com";
         var passwordHash = "hashed_password";
         var name = "Jane";
 
-        // Act
         var user = UserEntity.Create(email, passwordHash, name);
 
-        // Assert
         user.Email.ShouldBe(email);
         user.PasswordHash.ShouldBe(passwordHash);
         user.Name.ShouldBe(name);
@@ -26,7 +23,6 @@ public class UserEntityTests
     [Fact]
     public void Create_WithEmptyEmail_ThrowsArgumentException()
     {
-        // Act & Assert
         var ex = Should.Throw<ArgumentException>(() => UserEntity.Create("", "hash", "Name"));
         ex.ParamName.ShouldBe("email");
     }
@@ -34,7 +30,6 @@ public class UserEntityTests
     [Fact]
     public void Create_WithEmptyPasswordHash_ThrowsArgumentException()
     {
-        // Act & Assert
         var ex = Should.Throw<ArgumentException>(() => UserEntity.Create("jane@example.com", "", "Name"));
         ex.ParamName.ShouldBe("passwordHash");
     }
@@ -42,7 +37,6 @@ public class UserEntityTests
     [Fact]
     public void Create_WithEmptyName_ThrowsArgumentException()
     {
-        // Act & Assert
         var ex = Should.Throw<ArgumentException>(() => UserEntity.Create("jane@example.com", "hash", ""));
         ex.ParamName.ShouldBe("name");
     }
@@ -50,16 +44,13 @@ public class UserEntityTests
     [Fact]
     public void Rehydrate_WithValidArgs_ReturnsUserWithSpecificId()
     {
-        // Arrange
         var id = Guid.NewGuid();
         var email = "jane@example.com";
         var passwordHash = "hashed_password";
         var name = "Jane";
 
-        // Act
         var user = UserEntity.Rehydrate(id, email, passwordHash, name);
 
-        // Assert
         user.Id.ShouldBe(id);
         user.Email.ShouldBe(email);
         user.PasswordHash.ShouldBe(passwordHash);

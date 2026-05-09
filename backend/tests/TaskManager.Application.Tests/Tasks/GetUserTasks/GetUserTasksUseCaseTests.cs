@@ -25,7 +25,6 @@ public class GetUserTasksUseCaseTests
     [Fact]
     public async Task ExecuteAsync_WithValidPage_ReturnsMappedDtos()
     {
-        // Arrange
         var userId = Guid.NewGuid();
         var task = TaskEntity.Create("Task 1", null, DomainTaskStatus.Pending, null, userId);
         var paginatedResult = new PaginatedResult<TaskEntity>(new[] { task }.ToList(), 1, 10, 1);
@@ -33,10 +32,8 @@ public class GetUserTasksUseCaseTests
             .Returns(paginatedResult);
         _currentUserSubstitute.UserId.Returns(userId);
 
-        // Act
         var result = await _useCase.ExecuteAsync(new GetUserTasksInput(1), CancellationToken.None);
 
-        // Assert
         result.Items.Count.ShouldBe(1);
         result.Items[0].Title.ShouldBe("Task 1");
         result.Page.ShouldBe(1);
@@ -47,27 +44,22 @@ public class GetUserTasksUseCaseTests
     [Fact]
     public async Task ExecuteAsync_PassesCurrentUserIdToRepo()
     {
-        // Arrange
         var userId = Guid.NewGuid();
         var paginatedResult = new PaginatedResult<TaskEntity>(new List<TaskEntity>(), 1, 10, 0);
         _repositorySubstitute.GetByUserIdPagedAsync(userId, 1, 10, Arg.Any<CancellationToken>())
             .Returns(paginatedResult);
         _currentUserSubstitute.UserId.Returns(userId);
 
-        // Act
         await _useCase.ExecuteAsync(new GetUserTasksInput(1), CancellationToken.None);
 
-        // Assert
         await _repositorySubstitute.Received(1).GetByUserIdPagedAsync(userId, 1, 10, Arg.Any<CancellationToken>());
     }
 
     [Fact]
     public async Task ExecuteAsync_WithInvalidPage_ThrowsValidationException()
     {
-        // Arrange
         var input = new GetUserTasksInput(0);
 
-        // Act & Assert
         await Should.ThrowAsync<ValidationException>(() =>
             _useCase.ExecuteAsync(input, CancellationToken.None));
     }
@@ -75,17 +67,14 @@ public class GetUserTasksUseCaseTests
     [Fact]
     public async Task ExecuteAsync_WhenRepoReturnsEmpty_ReturnsEmptyItems_WithPreservedPaging()
     {
-        // Arrange
         var userId = Guid.NewGuid();
         var paginatedResult = new PaginatedResult<TaskEntity>(new List<TaskEntity>(), 1, 10, 0);
         _repositorySubstitute.GetByUserIdPagedAsync(userId, 1, 10, Arg.Any<CancellationToken>())
             .Returns(paginatedResult);
         _currentUserSubstitute.UserId.Returns(userId);
 
-        // Act
         var result = await _useCase.ExecuteAsync(new GetUserTasksInput(1), CancellationToken.None);
 
-        // Assert
         result.Items.ShouldBeEmpty();
         result.TotalCount.ShouldBe(0);
         result.Page.ShouldBe(1);

@@ -22,28 +22,23 @@ public class DeleteTaskUseCaseTests
     [Fact]
     public async Task ExecuteAsync_WhenOwned_DeletesTask()
     {
-        // Arrange
         var userId = Guid.NewGuid();
         var taskId = Guid.NewGuid();
         var task = TaskEntity.Create("Task", null, DomainTaskStatus.Pending, null, userId);
         _repositorySubstitute.GetByIdAsync(taskId, Arg.Any<CancellationToken>()).Returns(task);
         _currentUserSubstitute.UserId.Returns(userId);
 
-        // Act
         await _useCase.ExecuteAsync(new DeleteTaskInput(taskId), CancellationToken.None);
 
-        // Assert
         await _repositorySubstitute.Received(1).DeleteAsync(taskId, Arg.Any<CancellationToken>());
     }
 
     [Fact]
     public async Task ExecuteAsync_WhenNotFound_ThrowsTaskNotFoundException_AndDoesNotCallDelete()
     {
-        // Arrange
         var taskId = Guid.NewGuid();
         _repositorySubstitute.GetByIdAsync(taskId, Arg.Any<CancellationToken>()).Returns((TaskEntity?)null);
 
-        // Act & Assert
         var ex = await Should.ThrowAsync<TaskNotFoundException>(() =>
             _useCase.ExecuteAsync(new DeleteTaskInput(taskId), CancellationToken.None));
         ex.TaskId.ShouldBe(taskId);
@@ -53,7 +48,6 @@ public class DeleteTaskUseCaseTests
     [Fact]
     public async Task ExecuteAsync_WhenForbidden_ThrowsTaskAccessForbiddenException_AndDoesNotCallDelete()
     {
-        // Arrange
         var ownerId = Guid.NewGuid();
         var currentUserId = Guid.NewGuid();
         var taskId = Guid.NewGuid();
@@ -61,7 +55,6 @@ public class DeleteTaskUseCaseTests
         _repositorySubstitute.GetByIdAsync(taskId, Arg.Any<CancellationToken>()).Returns(task);
         _currentUserSubstitute.UserId.Returns(currentUserId);
 
-        // Act & Assert
         var ex = await Should.ThrowAsync<TaskAccessForbiddenException>(() =>
             _useCase.ExecuteAsync(new DeleteTaskInput(taskId), CancellationToken.None));
         ex.TaskId.ShouldBe(taskId);

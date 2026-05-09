@@ -22,17 +22,14 @@ public class GetTaskByIdUseCaseTests
     [Fact]
     public async Task ExecuteAsync_WhenTaskExistsAndIsOwned_ReturnsDto()
     {
-        // Arrange
         var userId = Guid.NewGuid();
         var taskId = Guid.NewGuid();
         var task = TaskEntity.Create("Test Task", null, DomainTaskStatus.Pending, null, userId);
         _repositorySubstitute.GetByIdAsync(taskId, Arg.Any<CancellationToken>()).Returns(task);
         _currentUserSubstitute.UserId.Returns(userId);
 
-        // Act
         var result = await _useCase.ExecuteAsync(new GetTaskByIdInput(taskId), CancellationToken.None);
 
-        // Assert
         result.Id.ShouldBe(task.Id);
         result.Title.ShouldBe("Test Task");
     }
@@ -40,11 +37,9 @@ public class GetTaskByIdUseCaseTests
     [Fact]
     public async Task ExecuteAsync_WhenTaskDoesNotExist_ThrowsTaskNotFoundException()
     {
-        // Arrange
         var taskId = Guid.NewGuid();
         _repositorySubstitute.GetByIdAsync(taskId, Arg.Any<CancellationToken>()).Returns((TaskEntity?)null);
 
-        // Act & Assert
         var ex = await Should.ThrowAsync<TaskNotFoundException>(() =>
             _useCase.ExecuteAsync(new GetTaskByIdInput(taskId), CancellationToken.None));
         ex.TaskId.ShouldBe(taskId);
@@ -53,7 +48,6 @@ public class GetTaskByIdUseCaseTests
     [Fact]
     public async Task ExecuteAsync_WhenTaskBelongsToAnotherUser_ThrowsTaskAccessForbiddenException()
     {
-        // Arrange
         var ownerId = Guid.NewGuid();
         var currentUserId = Guid.NewGuid();
         var taskId = Guid.NewGuid();
@@ -61,7 +55,6 @@ public class GetTaskByIdUseCaseTests
         _repositorySubstitute.GetByIdAsync(taskId, Arg.Any<CancellationToken>()).Returns(task);
         _currentUserSubstitute.UserId.Returns(currentUserId);
 
-        // Act & Assert
         var ex = await Should.ThrowAsync<TaskAccessForbiddenException>(() =>
             _useCase.ExecuteAsync(new GetTaskByIdInput(taskId), CancellationToken.None));
         ex.TaskId.ShouldBe(taskId);

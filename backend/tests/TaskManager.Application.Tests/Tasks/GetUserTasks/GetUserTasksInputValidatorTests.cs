@@ -11,39 +11,30 @@ public class GetUserTasksInputValidatorTests
     [Fact]
     public void Validate_WithValidPage_ShouldPass()
     {
-        // Arrange
         var input = new GetUserTasksInput(1);
 
-        // Act
         var result = _validator.TestValidate(input);
 
-        // Assert
         result.ShouldNotHaveAnyValidationErrors();
     }
 
     [Fact]
     public void Validate_WithPageZero_ShouldFail()
     {
-        // Arrange
         var input = new GetUserTasksInput(0);
 
-        // Act
         var result = _validator.TestValidate(input);
 
-        // Assert
         result.ShouldHaveValidationErrorFor(x => x.Page);
     }
 
     [Fact]
     public void Validate_WithNegativePage_ShouldFail()
     {
-        // Arrange
         var input = new GetUserTasksInput(-1);
 
-        // Act
         var result = _validator.TestValidate(input);
 
-        // Assert
         result.ShouldHaveValidationErrorFor(x => x.Page);
     }
 }

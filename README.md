@@ -35,7 +35,7 @@ Email:    admin@taskmanager.com
 Password: Test@1234
 ```
 
-The user above already exists on the database and is seeded with 10 sample tasks for testing, but a new user can be created at any time.
+The user above already exists in the database and is seeded with 10 sample tasks for testing, but a new user can be created at any time.
 
 ### 3. Stop
 
@@ -45,7 +45,7 @@ docker compose down
 
 ## Backend Architecture
 
-The backend follows **Clean Architecture** with dependency inversion applied. The Domain layer has no external dependencies, instead, outer layers depend on layers beneath it.
+The backend follows **Clean Architecture** with dependency inversion applied. The Domain layer has no external dependencies. Instead, outer layers depend inward.
 
 ```
 ┌─────────────────────────────────────────┐
@@ -87,7 +87,7 @@ The projects in the solution are mapped to the assignment's required layers as f
 - **Centralized exception handling**: `GlobalExceptionHandler` middleware is responsible for mapping domain exceptions, validation failures, and auth errors to RFC 7807 `ProblemDetails` responses with appropriate HTTP status codes.
 - **Authentication**: Users can be authenticated via `Microsoft.AspNetCore.Authentication.JwtBearer`; passwords hashed with BCrypt.
 - **MongoDB driver**: The official `MongoDB.Driver` is used directly, no use of Entity Framework or Dapper.
-- **`TaskStatus` as enum, not value object**: A value object could be used to define the status of the task if I wanted to use DDD strictly, but for this application I decided to go with the simplicity of an enum, as the status doesn't have a behavior.
+- **`TaskStatus` as enum, not value object**: A value object could be used to define the status of the task if I wanted to use DDD strictly, but for this application I decided to go with the simplicity of an enum, as the status doesn't have behavior.
 
 ## Frontend Architecture
 
@@ -108,7 +108,7 @@ frontend/src/
 ├── features/
 │   ├── auth/          # AuthContext, login/register API and its components
 │   └── tasks/         # Task CRUD API, hooks, and its components
-├── pages/             # Top-level pages (Landing, Tasks and overall NotFound)
+├── pages/             # Top-level pages (Landing, Tasks and a fallback NotFound)
 └── shared/
     ├── api/           # Axios client and interceptors
     ├── components/    # Cross-feature UI (Navbar, Modal, Button, etc.)
@@ -179,7 +179,9 @@ npm test
 
 ## GenAI Tools
 
-_Under construction_
+The tech test includes a prompt-engineering deliverable, separate from the application. While developing this project, I've used GitHub Copilot (with Visual Studio and VS Code) for code generation, and Claude AI for architectural decisions, design discussions, and reviewing AI-generated code.
+
+The full documentation including prompts used, output samples and the critical evaluation of each is present in file `GENAI.md`.
 
 ## Future Improvements
 

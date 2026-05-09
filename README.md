@@ -161,7 +161,7 @@ There's also a compound index on `(userId, createdAt desc)` to support the retri
 | Infrastructure | `TaskManager.Infrastructure.Tests` | BCrypt hasher, JWT issuer                                    |
 | WebApi         | `TaskManager.WebApi.Tests`         | Controllers, exception middleware, current-user service      |
 
-The current report shows 88.9% line coverage and 93.7% branch coverage.
+The current report shows 80.7% line coverage and 88.2% branch coverage.
 
 To run all tests:
 

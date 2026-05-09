@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 using TaskManager.Application.Common.Interfaces;
@@ -11,6 +12,7 @@ using TaskManager.Application.Users.RegisterUser;
 
 namespace TaskManager.Application;
 
+[ExcludeFromCodeCoverage]
 public static class DependencyInjection
 {
     public static IServiceCollection AddApplication(this IServiceCollection services)

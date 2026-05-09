@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore.Mvc;
 
 namespace TaskManager.WebApi.Common;
@@ -6,6 +7,7 @@ namespace TaskManager.WebApi.Common;
 /// Base controller providing automatic access to request cancellation token
 /// and other common controller utilities
 /// </summary>
+[ExcludeFromCodeCoverage]
 public abstract class ApiControllerBase : ControllerBase
 {
     /// <summary>

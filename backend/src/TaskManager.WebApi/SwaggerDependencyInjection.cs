@@ -1,8 +1,10 @@
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 
 namespace TaskManager.WebApi;
 
+[ExcludeFromCodeCoverage]
 public static class SwaggerDependencyInjection
 {
     public static IServiceCollection AddSwaggerDocumentation(this IServiceCollection services)

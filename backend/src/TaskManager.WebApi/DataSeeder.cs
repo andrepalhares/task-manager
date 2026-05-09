@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using TaskManager.Application.Common.Interfaces;
 using TaskManager.Domain.Entities;
 using TaskStatus = TaskManager.Domain.Entities.TaskStatus;
@@ -8,6 +9,7 @@ namespace TaskManager.WebApi;
 /// Seeds a demo user + sample tasks on application startup.
 /// Idempotent: if the demo user already exists, nothing is inserted.
 /// </summary>
+[ExcludeFromCodeCoverage]
 public sealed class DataSeeder
 {
     private const string DemoEmail = "admin@taskmanager.com";

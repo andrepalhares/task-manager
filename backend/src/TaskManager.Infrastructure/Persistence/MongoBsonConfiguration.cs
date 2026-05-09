@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Serializers;
 using TaskManager.Domain.Entities;
@@ -5,6 +6,7 @@ using TaskManager.Infrastructure.Persistence.Models;
 
 namespace TaskManager.Infrastructure.Persistence;
 
+[ExcludeFromCodeCoverage]
 public static class MongoBsonConfiguration
 {
     private static bool _registered;

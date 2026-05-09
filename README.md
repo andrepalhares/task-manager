@@ -152,7 +152,7 @@ There's also a compound index on `(userId, createdAt desc)` to support the retri
 
 ### Backend (xUnit + NSubstitute + Shouldly)
 
-111 tests (~ code coverage): // TO-DO: Include code coverage
+111 tests:
 
 | Layer          | Project                            | Coverage                                                     |
 | -------------- | ---------------------------------- | ------------------------------------------------------------ |
@@ -161,11 +161,29 @@ There's also a compound index on `(userId, createdAt desc)` to support the retri
 | Infrastructure | `TaskManager.Infrastructure.Tests` | BCrypt hasher, JWT issuer                                    |
 | WebApi         | `TaskManager.WebApi.Tests`         | Controllers, exception middleware, current-user service      |
 
+The current report shows 88.9% line coverage and 93.7% branch coverage.
+
 To run all tests:
 
 ```bash
 dotnet test
 ```
+
+To reproduce the coverage report, run this inside `/backend`:
+
+```bash
+dotnet test --collect:"XPlat Code Coverage"
+
+# one-time install
+dotnet tool install -g dotnet-reportgenerator-globaltool
+
+reportgenerator \
+  -reports:"**/coverage.cobertura.xml" \
+  -targetdir:"coveragereport" \
+  -reporttypes:Html
+```
+
+Open file `coveragereport/index.html` to view the report.
 
 ### Frontend (Vitest + Testing Library)
 

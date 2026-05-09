@@ -1,9 +1,11 @@
+using System.Diagnostics.CodeAnalysis;
 using MongoDB.Driver;
 using TaskManager.Domain.Entities;
 using TaskManager.Infrastructure.Persistence.Models;
 
 namespace TaskManager.Infrastructure.Persistence;
 
+[ExcludeFromCodeCoverage]
 public static class MongoIndexInitializer
 {
     public static async Task EnsureIndexesAsync(IMongoDatabase database, CancellationToken cancellationToken = default)

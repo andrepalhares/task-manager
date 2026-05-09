@@ -1,9 +1,11 @@
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore.Builder;
 using MongoDB.Driver;
 using TaskManager.Infrastructure.Persistence;
 
 namespace TaskManager.WebApi;
 
+[ExcludeFromCodeCoverage]
 public static class MongoInitialization
 {
     public static async Task InitializeMongoIndexesAsync(this WebApplication app, CancellationToken cancellationToken = default)

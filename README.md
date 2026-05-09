@@ -136,15 +136,15 @@ The application uses **MongoDB 7** with two collections.
 
 **`tasks`**
 
-| Field         | Type     | Notes                                      |
-| ------------- | -------- | ------------------------------------------ |
-| `id`          | UUID     | Domain ID                                  |
-| `title`       | string   |                                            |
-| `description` | string?  |                                            |
-| `status`      | string   | `NotStarted`, `InProgress`, or `Completed` |
-| `dueDate`     | ISODate? | Nullable                                   |
-| `userId`      | UUID     | Owner reference                            |
-| `createdAt`   | ISODate  |                                            |
+| Field         | Type     | Notes                                   |
+| ------------- | -------- | --------------------------------------- |
+| `id`          | UUID     | Domain ID                               |
+| `title`       | string   |                                         |
+| `description` | string?  |                                         |
+| `status`      | string   | `Pending`, `InProgress`, or `Completed` |
+| `dueDate`     | ISODate? | Nullable                                |
+| `userId`      | UUID     | Owner reference                         |
+| `createdAt`   | ISODate  |                                         |
 
 There's also a compound index on `(userId, createdAt desc)` to support the retrieval of the user's tasks sorted by creation date.
 

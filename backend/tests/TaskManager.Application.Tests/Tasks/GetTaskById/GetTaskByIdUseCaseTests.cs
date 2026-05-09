@@ -1,10 +1,10 @@
 using NSubstitute;
 using Shouldly;
-using DomainTaskStatus = TaskManager.Domain.Entities.TaskStatus;
 using TaskManager.Application.Common.Interfaces;
 using TaskManager.Application.Tasks.GetTaskById;
 using TaskManager.Domain.Entities;
 using TaskManager.Domain.Exceptions.Tasks;
+using DomainTaskStatus = TaskManager.Domain.Entities.TaskStatus;
 
 namespace TaskManager.Application.Tests.Tasks.GetTaskById;
 

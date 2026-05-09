@@ -1,8 +1,8 @@
-using System.Text.Json;
 using FluentValidation;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Http;
 using Shouldly;
+using System.Text.Json;
 using TaskManager.Domain.Exceptions.Tasks;
 using TaskManager.Domain.Exceptions.Users;
 using TaskManager.WebApi.Middleware;

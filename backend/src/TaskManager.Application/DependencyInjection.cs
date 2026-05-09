@@ -1,6 +1,6 @@
-using System.Diagnostics.CodeAnalysis;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
+using System.Diagnostics.CodeAnalysis;
 using TaskManager.Application.Common.Interfaces;
 using TaskManager.Application.Tasks.CreateTask;
 using TaskManager.Application.Tasks.DeleteTask;

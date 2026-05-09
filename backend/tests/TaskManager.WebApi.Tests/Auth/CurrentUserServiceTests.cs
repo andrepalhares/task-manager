@@ -1,7 +1,7 @@
-using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
 using NSubstitute;
 using Shouldly;
+using System.Security.Claims;
 using TaskManager.WebApi.Auth;
 
 namespace TaskManager.WebApi.Tests.Auth;

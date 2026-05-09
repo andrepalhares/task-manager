@@ -27,10 +27,10 @@ public class LoginUserUseCaseTests
         var input = new LoginUserInput("jane@example.com", "password123");
         var userId = Guid.NewGuid();
         var user = UserEntity.Create(input.Email, "hashed_password", "Jane Doe");
-        
+
         _userRepository.GetByEmailAsync(input.Email, default).Returns(user);
         _passwordHasher.Verify(input.Password, user.PasswordHash).Returns(true);
-        
+
         var expiresAt = DateTimeOffset.UtcNow.AddMinutes(60);
         var token = new AuthToken("jwt_token_value", expiresAt);
         _tokenService.CreateToken(user).Returns(token);
@@ -75,7 +75,7 @@ public class LoginUserUseCaseTests
     {
         var input = new LoginUserInput("jane@example.com", "wrongpassword");
         var user = UserEntity.Create(input.Email, "hashed_password", "Jane Doe");
-        
+
         _userRepository.GetByEmailAsync(input.Email, default).Returns(user);
         _passwordHasher.Verify(input.Password, user.PasswordHash).Returns(false);
 
@@ -88,7 +88,7 @@ public class LoginUserUseCaseTests
     {
         var input = new LoginUserInput("jane@example.com", "wrongpassword");
         var user = UserEntity.Create(input.Email, "hashed_password", "Jane Doe");
-        
+
         _userRepository.GetByEmailAsync(input.Email, default).Returns(user);
         _passwordHasher.Verify(input.Password, user.PasswordHash).Returns(false);
 

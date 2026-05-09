@@ -1,5 +1,5 @@
-using System.IdentityModel.Tokens.Jwt;
 using Shouldly;
+using System.IdentityModel.Tokens.Jwt;
 using TaskManager.Domain.Entities;
 using TaskManager.Infrastructure.Security;
 

@@ -18,7 +18,7 @@ public sealed class DeleteTaskUseCase : IUseCase<DeleteTaskInput, DeleteTaskOutp
     }
 
     public async Task<DeleteTaskOutput> ExecuteAsync(
-        DeleteTaskInput input, 
+        DeleteTaskInput input,
         CancellationToken cancellationToken = default)
     {
         var task = await _taskRepository.GetByIdAsync(input.TaskId, cancellationToken);

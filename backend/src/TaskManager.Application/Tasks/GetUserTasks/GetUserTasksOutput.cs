@@ -1,5 +1,3 @@
-using TaskManager.Application.Common.Pagination;
-
 namespace TaskManager.Application.Tasks.GetUserTasks;
 
 public sealed record TaskItemOutput(

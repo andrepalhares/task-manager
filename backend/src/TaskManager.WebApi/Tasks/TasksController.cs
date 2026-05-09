@@ -61,7 +61,7 @@ public sealed class TasksController : ApiControllerBase
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     public async Task<IActionResult> ListAsync(
-        [FromQuery] int page = 1, 
+        [FromQuery] int page = 1,
         CancellationToken cancellationToken = default)
     {
         var result = await _getUserTasks.ExecuteAsync(new GetUserTasksInput(page), cancellationToken);
@@ -75,8 +75,8 @@ public sealed class TasksController : ApiControllerBase
     [ProducesResponseType(StatusCodes.Status403Forbidden)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> UpdateAsync(
-        [FromRoute] Guid id, 
-        [FromBody] UpdateTaskRequest request, 
+        [FromRoute] Guid id,
+        [FromBody] UpdateTaskRequest request,
         CancellationToken cancellationToken)
     {
         var result = await _updateTask.ExecuteAsync(request.ToInput(id), cancellationToken);
@@ -89,7 +89,7 @@ public sealed class TasksController : ApiControllerBase
     [ProducesResponseType(StatusCodes.Status403Forbidden)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> DeleteAsync(
-        [FromRoute] Guid id, 
+        [FromRoute] Guid id,
         CancellationToken cancellationToken)
     {
         await _deleteTask.ExecuteAsync(new DeleteTaskInput(id), cancellationToken);

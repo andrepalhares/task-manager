@@ -1,7 +1,6 @@
 using FluentValidation;
-using DomainTaskStatus = TaskManager.Domain.Entities.TaskStatus;
 using TaskManager.Application.Tasks.CreateTask;
-using TaskManager.Domain.Entities;
+using DomainTaskStatus = TaskManager.Domain.Entities.TaskStatus;
 
 namespace TaskManager.WebApi.Tasks;
 

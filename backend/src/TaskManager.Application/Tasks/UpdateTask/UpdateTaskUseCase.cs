@@ -22,7 +22,7 @@ public sealed class UpdateTaskUseCase : IUseCase<UpdateTaskInput, UpdateTaskOutp
     }
 
     public async Task<UpdateTaskOutput> ExecuteAsync(
-        UpdateTaskInput input, 
+        UpdateTaskInput input,
         CancellationToken cancellationToken = default)
     {
         await _validator.ValidateAndThrowAsync(input, cancellationToken);

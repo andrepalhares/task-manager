@@ -1,10 +1,10 @@
 using FluentValidation;
 using NSubstitute;
 using Shouldly;
-using DomainTaskStatus = TaskManager.Domain.Entities.TaskStatus;
 using TaskManager.Application.Common.Interfaces;
 using TaskManager.Application.Tasks.CreateTask;
 using TaskManager.Domain.Entities;
+using DomainTaskStatus = TaskManager.Domain.Entities.TaskStatus;
 
 namespace TaskManager.Application.Tests.Tasks.CreateTask;
 

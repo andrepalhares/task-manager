@@ -20,7 +20,7 @@ builder.Services.AddInfrastructure(builder.Configuration);
 
 var paginationSettings = builder.Configuration.GetSection("Pagination").Get<PaginationSettings>()
     ?? throw new InvalidOperationException("Pagination settings are not configured.");
-    
+
 builder.Services.AddSingleton(paginationSettings);
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<ICurrentUserService, CurrentUserService>();

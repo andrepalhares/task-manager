@@ -1,8 +1,8 @@
-using System.Diagnostics.CodeAnalysis;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
-using DomainTaskStatus = TaskManager.Domain.Entities.TaskStatus;
+using System.Diagnostics.CodeAnalysis;
 using TaskManager.Domain.Entities;
+using DomainTaskStatus = TaskManager.Domain.Entities.TaskStatus;
 
 namespace TaskManager.Infrastructure.Persistence.Models;
 

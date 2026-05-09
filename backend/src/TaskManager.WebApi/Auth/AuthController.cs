@@ -28,7 +28,7 @@ public sealed class AuthController : ApiControllerBase
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status409Conflict)]
     public async Task<IActionResult> Register(
-        [FromBody] RegisterUserRequest request, 
+        [FromBody] RegisterUserRequest request,
         CancellationToken cancellationToken)
     {
         var result = await _registerUserUseCase.ExecuteAsync(request.ToInput(), cancellationToken);
@@ -40,7 +40,7 @@ public sealed class AuthController : ApiControllerBase
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     public async Task<IActionResult> Login(
-        [FromBody] LoginUserRequest request, 
+        [FromBody] LoginUserRequest request,
         CancellationToken cancellationToken)
     {
         var result = await _loginUserUseCase.ExecuteAsync(request.ToInput(), cancellationToken);

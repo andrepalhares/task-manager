@@ -1,6 +1,6 @@
 using Shouldly;
-using DomainTaskStatus = TaskManager.Domain.Entities.TaskStatus;
 using TaskManager.Domain.Entities;
+using DomainTaskStatus = TaskManager.Domain.Entities.TaskStatus;
 
 namespace TaskManager.Domain.Tests.Entities;
 

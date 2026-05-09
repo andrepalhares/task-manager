@@ -8,8 +8,8 @@ using TaskManager.Application.Tasks.DeleteTask;
 using TaskManager.Application.Tasks.GetTaskById;
 using TaskManager.Application.Tasks.GetUserTasks;
 using TaskManager.Application.Tasks.UpdateTask;
-using DomainTaskStatus = TaskManager.Domain.Entities.TaskStatus;
 using TaskManager.WebApi.Tasks;
+using DomainTaskStatus = TaskManager.Domain.Entities.TaskStatus;
 
 namespace TaskManager.WebApi.Tests.Tasks;
 

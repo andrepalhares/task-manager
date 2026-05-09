@@ -24,7 +24,7 @@ public sealed class GetUserTasksUseCase : IUseCase<GetUserTasksInput, GetUserTas
     }
 
     public async Task<GetUserTasksOutput> ExecuteAsync(
-        GetUserTasksInput input, 
+        GetUserTasksInput input,
         CancellationToken cancellationToken = default)
     {
         await _validator.ValidateAndThrowAsync(input, cancellationToken);

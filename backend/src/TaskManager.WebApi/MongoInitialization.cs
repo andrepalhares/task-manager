@@ -1,6 +1,5 @@
-using System.Diagnostics.CodeAnalysis;
-using Microsoft.AspNetCore.Builder;
 using MongoDB.Driver;
+using System.Diagnostics.CodeAnalysis;
 using TaskManager.Infrastructure.Persistence;
 
 namespace TaskManager.WebApi;

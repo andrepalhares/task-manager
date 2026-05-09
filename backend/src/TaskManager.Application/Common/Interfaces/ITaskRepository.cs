@@ -5,12 +5,12 @@ namespace TaskManager.Application.Common.Interfaces;
 
 public interface ITaskRepository
 {
-    Task<TaskItem?> GetByIdAsync(Guid taskId, CancellationToken cancellationToken = default);
+    Task<TaskEntity?> GetByIdAsync(Guid taskId, CancellationToken cancellationToken = default);
 
-    Task<PaginatedResult<TaskItem>> GetByUserIdPagedAsync(
+    Task<PaginatedResult<TaskEntity>> GetByUserIdPagedAsync(
         Guid userId, int page, int pageSize, CancellationToken cancellationToken = default);
 
-    Task AddAsync(TaskItem task, CancellationToken cancellationToken = default);
-    Task UpdateAsync(TaskItem task, CancellationToken cancellationToken = default);
+    Task AddAsync(TaskEntity task, CancellationToken cancellationToken = default);
+    Task UpdateAsync(TaskEntity task, CancellationToken cancellationToken = default);
     Task DeleteAsync(Guid taskId, CancellationToken cancellationToken = default);
 }

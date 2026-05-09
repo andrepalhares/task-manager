@@ -42,7 +42,7 @@ public sealed class DataSeeder
             return;
         }
 
-        var user = User.Create(DemoEmail, _hasher.Hash(DemoPassword), DemoName);
+        var user = UserEntity.Create(DemoEmail, _hasher.Hash(DemoPassword), DemoName);
         await _users.AddAsync(user, cancellationToken);
 
         var now = DateTime.UtcNow;
@@ -62,7 +62,7 @@ public sealed class DataSeeder
 
         foreach (var s in samples)
         {
-            var task = TaskItem.Create(s.Title, s.Description, s.Status, s.DueDate, user.Id);
+            var task = TaskEntity.Create(s.Title, s.Description, s.Status, s.DueDate, user.Id);
             await _tasks.AddAsync(task, cancellationToken);
         }
     }

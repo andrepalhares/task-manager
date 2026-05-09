@@ -19,13 +19,13 @@ public static class MongoBsonConfiguration
         {
             if (_registered) return;
 
-            BsonClassMap.RegisterClassMap<User>(cm =>
+            BsonClassMap.RegisterClassMap<UserEntity>(cm =>
             {
                 cm.MapIdProperty(u => u.Id).SetSerializer(new GuidSerializer(MongoDB.Bson.GuidRepresentation.Standard));
                 cm.MapProperty(u => u.Email);
                 cm.MapProperty(u => u.PasswordHash);
                 cm.MapProperty(u => u.Name);
-                cm.MapCreator(u => User.Rehydrate(u.Id, u.Email, u.PasswordHash, u.Name));
+                cm.MapCreator(u => UserEntity.Rehydrate(u.Id, u.Email, u.PasswordHash, u.Name));
             });
 
             BsonClassMap.RegisterClassMap<TaskDocument>(cm =>

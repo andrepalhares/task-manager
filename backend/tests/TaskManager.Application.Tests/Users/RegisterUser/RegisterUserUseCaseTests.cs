@@ -35,7 +35,7 @@ public class RegisterUserUseCaseTests
 
         _passwordHasher.Received(1).Hash("Password1!");
         await _userRepository.Received(1).AddAsync(
-            Arg.Is<User>(u =>
+            Arg.Is<UserEntity>(u =>
                 u.Email == "user@example.com"
                 && u.Name == "Alice"
                 && u.PasswordHash == "hashed::Password1!"),
@@ -78,7 +78,7 @@ public class RegisterUserUseCaseTests
     public async Task ExecuteAsync_WhenRepositoryThrowsEmailAlreadyTaken_PropagatesException()
     {
         _userRepository
-            .AddAsync(Arg.Any<User>(), Arg.Any<CancellationToken>())
+            .AddAsync(Arg.Any<UserEntity>(), Arg.Any<CancellationToken>())
             .ThrowsAsync(new EmailAlreadyTakenException("user@example.com"));
 
         await Should.ThrowAsync<EmailAlreadyTakenException>(

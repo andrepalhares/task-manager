@@ -39,7 +39,7 @@ public sealed class LoginUserUseCase : IUseCase<LoginUserInput, LoginUserOutput>
         return new LoginUserOutput(token.Value, token.ExpiresAt);
     }
 
-    private async Task<User> GetUserByEmailAsync(
+    private async Task<UserEntity> GetUserByEmailAsync(
         string email,
         CancellationToken cancellationToken)
     {

@@ -10,10 +10,10 @@ public static class MongoIndexInitializer
 {
     public static async Task EnsureIndexesAsync(IMongoDatabase database, CancellationToken cancellationToken = default)
     {
-        var users = database.GetCollection<User>("users");
+        var users = database.GetCollection<UserEntity>("users");
         await users.Indexes.CreateOneAsync(
-            new CreateIndexModel<User>(
-                Builders<User>.IndexKeys.Ascending(u => u.Email),
+            new CreateIndexModel<UserEntity>(
+                Builders<UserEntity>.IndexKeys.Ascending(u => u.Email),
                 new CreateIndexOptions { Unique = true, Name = "ux_users_email" }),
             cancellationToken: cancellationToken);
 

@@ -19,7 +19,7 @@ public sealed class JwtTokenIssuer : ITokenIssuer
         _timeProvider = timeProvider;
     }
 
-    public AuthToken CreateToken(User user)
+    public AuthToken CreateToken(UserEntity user)
     {
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_settings.Key));
         var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);

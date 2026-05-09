@@ -26,7 +26,7 @@ public class UpdateTaskUseCaseTests
     {
         var userId = Guid.NewGuid();
         var taskId = Guid.NewGuid();
-        var task = TaskItem.Create("Original Title", "Original Description", DomainTaskStatus.Pending, null, userId);
+        var task = TaskEntity.Create("Original Title", "Original Description", DomainTaskStatus.Pending, null, userId);
         var input = new UpdateTaskInput(taskId, "Updated Title", "Updated Description", DomainTaskStatus.InProgress, null);
         _repositorySubstitute.GetByIdAsync(taskId, Arg.Any<CancellationToken>()).Returns(task);
         _currentUserSubstitute.UserId.Returns(userId);
@@ -36,7 +36,7 @@ public class UpdateTaskUseCaseTests
         result.Title.ShouldBe("Updated Title");
         result.Description.ShouldBe("Updated Description");
         result.Status.ShouldBe(DomainTaskStatus.InProgress.ToString());
-        await _repositorySubstitute.Received(1).UpdateAsync(Arg.Any<TaskItem>(), Arg.Any<CancellationToken>());
+        await _repositorySubstitute.Received(1).UpdateAsync(Arg.Any<TaskEntity>(), Arg.Any<CancellationToken>());
     }
 
     [Fact]
@@ -44,7 +44,7 @@ public class UpdateTaskUseCaseTests
     {
         var taskId = Guid.NewGuid();
         var input = new UpdateTaskInput(taskId, "Title", null, DomainTaskStatus.Pending, null);
-        _repositorySubstitute.GetByIdAsync(taskId, Arg.Any<CancellationToken>()).Returns((TaskItem?)null);
+        _repositorySubstitute.GetByIdAsync(taskId, Arg.Any<CancellationToken>()).Returns((TaskEntity?)null);
 
         var ex = await Should.ThrowAsync<TaskNotFoundException>(() =>
             _useCase.ExecuteAsync(input, CancellationToken.None));
@@ -57,7 +57,7 @@ public class UpdateTaskUseCaseTests
         var ownerId = Guid.NewGuid();
         var currentUserId = Guid.NewGuid();
         var taskId = Guid.NewGuid();
-        var task = TaskItem.Create("Title", null, DomainTaskStatus.Pending, null, ownerId);
+        var task = TaskEntity.Create("Title", null, DomainTaskStatus.Pending, null, ownerId);
         var input = new UpdateTaskInput(taskId, "Updated", null, DomainTaskStatus.Pending, null);
         _repositorySubstitute.GetByIdAsync(taskId, Arg.Any<CancellationToken>()).Returns(task);
         _currentUserSubstitute.UserId.Returns(currentUserId);

@@ -27,8 +27,8 @@ public class GetUserTasksUseCaseTests
     {
         // Arrange
         var userId = Guid.NewGuid();
-        var task = TaskItem.Create("Task 1", null, DomainTaskStatus.Pending, null, userId);
-        var paginatedResult = new PaginatedResult<TaskItem>(new[] { task }.ToList(), 1, 10, 1);
+        var task = TaskEntity.Create("Task 1", null, DomainTaskStatus.Pending, null, userId);
+        var paginatedResult = new PaginatedResult<TaskEntity>(new[] { task }.ToList(), 1, 10, 1);
         _repositorySubstitute.GetByUserIdPagedAsync(userId, 1, 10, Arg.Any<CancellationToken>())
             .Returns(paginatedResult);
         _currentUserSubstitute.UserId.Returns(userId);
@@ -49,7 +49,7 @@ public class GetUserTasksUseCaseTests
     {
         // Arrange
         var userId = Guid.NewGuid();
-        var paginatedResult = new PaginatedResult<TaskItem>(new List<TaskItem>(), 1, 10, 0);
+        var paginatedResult = new PaginatedResult<TaskEntity>(new List<TaskEntity>(), 1, 10, 0);
         _repositorySubstitute.GetByUserIdPagedAsync(userId, 1, 10, Arg.Any<CancellationToken>())
             .Returns(paginatedResult);
         _currentUserSubstitute.UserId.Returns(userId);
@@ -77,7 +77,7 @@ public class GetUserTasksUseCaseTests
     {
         // Arrange
         var userId = Guid.NewGuid();
-        var paginatedResult = new PaginatedResult<TaskItem>(new List<TaskItem>(), 1, 10, 0);
+        var paginatedResult = new PaginatedResult<TaskEntity>(new List<TaskEntity>(), 1, 10, 0);
         _repositorySubstitute.GetByUserIdPagedAsync(userId, 1, 10, Arg.Any<CancellationToken>())
             .Returns(paginatedResult);
         _currentUserSubstitute.UserId.Returns(userId);

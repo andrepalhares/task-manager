@@ -12,7 +12,7 @@ public class TaskDtoTests
     {
         var userId = Guid.NewGuid();
         var dueDate = DateTime.UtcNow.AddDays(2);
-        var task = TaskItem.Create("Title", "Description", DomainTaskStatus.InProgress, dueDate, userId);
+        var task = TaskEntity.Create("Title", "Description", DomainTaskStatus.InProgress, dueDate, userId);
 
         var dto = TaskDto.FromEntity(task);
 
@@ -27,7 +27,7 @@ public class TaskDtoTests
     [Fact]
     public void FromEntity_WithNullDescriptionAndDueDate_PreservesNulls()
     {
-        var task = TaskItem.Create("Title", null, DomainTaskStatus.Pending, null, Guid.NewGuid());
+        var task = TaskEntity.Create("Title", null, DomainTaskStatus.Pending, null, Guid.NewGuid());
 
         var dto = TaskDto.FromEntity(task);
 

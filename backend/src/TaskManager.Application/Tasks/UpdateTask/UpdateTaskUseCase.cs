@@ -42,7 +42,7 @@ public sealed class UpdateTaskUseCase : IUseCase<UpdateTaskInput, UpdateTaskOutp
             task.UserId);
     }
 
-    private void ValidateTask(UpdateTaskInput input, TaskItem? task)
+    private void ValidateTask(UpdateTaskInput input, TaskEntity? task)
     {
         if (task is null)
             throw new TaskNotFoundException(input.TaskId);

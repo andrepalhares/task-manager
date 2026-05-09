@@ -15,8 +15,8 @@ public class JwtTokenIssuerTests
         AccessTokenLifetimeMinutes = 60
     };
 
-    private static User NewUser() =>
-        User.Create("test@example.com", "hashed_password", "Test User");
+    private static UserEntity NewUser() =>
+        UserEntity.Create("test@example.com", "hashed_password", "Test User");
 
     private JwtTokenIssuer CreateSut(TimeProvider? timeProvider = null) =>
         new(_settings, timeProvider ?? TimeProvider.System);

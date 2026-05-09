@@ -24,10 +24,10 @@ internal sealed class TaskDocument
 
     public DateTime CreatedAt { get; set; }
 
-    public TaskItem ToEntity()
-        => TaskItem.Rehydrate(Id, Title, Description, Status, DueDate, UserId);
+    public TaskEntity ToEntity()
+        => TaskEntity.Rehydrate(Id, Title, Description, Status, DueDate, UserId);
 
-    public static TaskDocument FromEntity(TaskItem task, DateTime createdAt)
+    public static TaskDocument FromEntity(TaskEntity task, DateTime createdAt)
         => new()
         {
             Id = task.Id,

@@ -17,13 +17,13 @@ public sealed class TaskRepository : ITaskRepository
         _timeProvider = timeProvider;
     }
 
-    public async Task<TaskItem?> GetByIdAsync(Guid taskId, CancellationToken cancellationToken = default)
+    public async Task<TaskEntity?> GetByIdAsync(Guid taskId, CancellationToken cancellationToken = default)
     {
         var doc = await _collection.Find(d => d.Id == taskId).FirstOrDefaultAsync(cancellationToken);
         return doc?.ToEntity();
     }
 
-    public async Task<PaginatedResult<TaskItem>> GetByUserIdPagedAsync(
+    public async Task<PaginatedResult<TaskEntity>> GetByUserIdPagedAsync(
         Guid userId, int page, int pageSize, CancellationToken cancellationToken = default)
     {
         var offset = (page - 1) * pageSize;
@@ -41,16 +41,16 @@ public sealed class TaskRepository : ITaskRepository
             .ToListAsync(cancellationToken);
 
         var items = docs.Select(d => d.ToEntity()).ToList();
-        return new PaginatedResult<TaskItem>(items, page, pageSize, totalCount);
+        return new PaginatedResult<TaskEntity>(items, page, pageSize, totalCount);
     }
 
-    public async Task AddAsync(TaskItem task, CancellationToken cancellationToken = default)
+    public async Task AddAsync(TaskEntity task, CancellationToken cancellationToken = default)
     {
         var doc = TaskDocument.FromEntity(task, _timeProvider.GetUtcNow().UtcDateTime);
         await _collection.InsertOneAsync(doc, cancellationToken: cancellationToken);
     }
 
-    public async Task UpdateAsync(TaskItem task, CancellationToken cancellationToken = default)
+    public async Task UpdateAsync(TaskEntity task, CancellationToken cancellationToken = default)
     {
         var update = Builders<TaskDocument>.Update
             .Set(d => d.Title, task.Title)

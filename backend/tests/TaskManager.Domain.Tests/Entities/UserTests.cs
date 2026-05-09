@@ -3,7 +3,7 @@ using TaskManager.Domain.Entities;
 
 namespace TaskManager.Domain.Tests.Entities;
 
-public class UserTests
+public class UserEntityTests
 {
     [Fact]
     public void Create_WithValidArgs_ReturnsUserWithGeneratedId()
@@ -14,7 +14,7 @@ public class UserTests
         var name = "Jane";
 
         // Act
-        var user = User.Create(email, passwordHash, name);
+        var user = UserEntity.Create(email, passwordHash, name);
 
         // Assert
         user.Email.ShouldBe(email);
@@ -27,7 +27,7 @@ public class UserTests
     public void Create_WithEmptyEmail_ThrowsArgumentException()
     {
         // Act & Assert
-        var ex = Should.Throw<ArgumentException>(() => User.Create("", "hash", "Name"));
+        var ex = Should.Throw<ArgumentException>(() => UserEntity.Create("", "hash", "Name"));
         ex.ParamName.ShouldBe("email");
     }
 
@@ -35,7 +35,7 @@ public class UserTests
     public void Create_WithEmptyPasswordHash_ThrowsArgumentException()
     {
         // Act & Assert
-        var ex = Should.Throw<ArgumentException>(() => User.Create("jane@example.com", "", "Name"));
+        var ex = Should.Throw<ArgumentException>(() => UserEntity.Create("jane@example.com", "", "Name"));
         ex.ParamName.ShouldBe("passwordHash");
     }
 
@@ -43,7 +43,7 @@ public class UserTests
     public void Create_WithEmptyName_ThrowsArgumentException()
     {
         // Act & Assert
-        var ex = Should.Throw<ArgumentException>(() => User.Create("jane@example.com", "hash", ""));
+        var ex = Should.Throw<ArgumentException>(() => UserEntity.Create("jane@example.com", "hash", ""));
         ex.ParamName.ShouldBe("name");
     }
 
@@ -57,7 +57,7 @@ public class UserTests
         var name = "Jane";
 
         // Act
-        var user = User.Rehydrate(id, email, passwordHash, name);
+        var user = UserEntity.Rehydrate(id, email, passwordHash, name);
 
         // Assert
         user.Id.ShouldBe(id);

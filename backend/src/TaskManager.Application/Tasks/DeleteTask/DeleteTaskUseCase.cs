@@ -29,7 +29,7 @@ public sealed class DeleteTaskUseCase : IUseCase<DeleteTaskInput, DeleteTaskOutp
         return new DeleteTaskOutput();
     }
 
-    private void ValidateTask(DeleteTaskInput input, TaskItem? task)
+    private void ValidateTask(DeleteTaskInput input, TaskEntity? task)
     {
         if (task is null)
             throw new TaskNotFoundException(input.TaskId);

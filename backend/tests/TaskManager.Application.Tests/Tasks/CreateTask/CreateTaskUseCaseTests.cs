@@ -33,7 +33,7 @@ public class CreateTaskUseCaseTests
         result.Description.ShouldBe("Test Description");
         result.Status.ShouldBe(DomainTaskStatus.Pending.ToString());
         result.UserId.ShouldBe(userId);
-        await _repositorySubstitute.Received(1).AddAsync(Arg.Any<TaskItem>(), Arg.Any<CancellationToken>());
+        await _repositorySubstitute.Received(1).AddAsync(Arg.Any<TaskEntity>(), Arg.Any<CancellationToken>());
     }
 
     [Fact]
@@ -42,8 +42,8 @@ public class CreateTaskUseCaseTests
         var userId = Guid.NewGuid();
         var input = new CreateTaskInput("Title", null, DomainTaskStatus.Pending, null);
         _currentUserSubstitute.UserId.Returns(userId);
-        TaskItem capturedTask = null!;
-        await _repositorySubstitute.AddAsync(Arg.Do<TaskItem>(t => capturedTask = t), Arg.Any<CancellationToken>());
+        TaskEntity capturedTask = null!;
+        await _repositorySubstitute.AddAsync(Arg.Do<TaskEntity>(t => capturedTask = t), Arg.Any<CancellationToken>());
 
         await _useCase.ExecuteAsync(input, CancellationToken.None);
 

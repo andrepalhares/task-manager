@@ -1,6 +1,6 @@
 namespace TaskManager.Domain.Entities;
 
-public sealed class TaskItem
+public sealed class TaskEntity
 {
     public Guid Id { get; private set; }
     public string Title { get; private set; }
@@ -9,7 +9,7 @@ public sealed class TaskItem
     public DateTime? DueDate { get; private set; }
     public Guid UserId { get; }
 
-    private TaskItem(Guid id, string title, string? description, TaskStatus status, DateTime? dueDate, Guid userId)
+    private TaskEntity(Guid id, string title, string? description, TaskStatus status, DateTime? dueDate, Guid userId)
     {
         if (string.IsNullOrWhiteSpace(title))
             throw new ArgumentException("Title is required.", nameof(title));
@@ -24,10 +24,10 @@ public sealed class TaskItem
         UserId = userId;
     }
 
-    public static TaskItem Create(string title, string? description, TaskStatus status, DateTime? dueDate, Guid userId)
+    public static TaskEntity Create(string title, string? description, TaskStatus status, DateTime? dueDate, Guid userId)
         => new(Guid.NewGuid(), title, description, status, dueDate, userId);
 
-    public static TaskItem Rehydrate(Guid id, string title, string? description, TaskStatus status, DateTime? dueDate, Guid userId)
+    public static TaskEntity Rehydrate(Guid id, string title, string? description, TaskStatus status, DateTime? dueDate, Guid userId)
         => new(id, title, description, status, dueDate, userId);
 
     public void Update(string title, string? description, TaskStatus status, DateTime? dueDate)

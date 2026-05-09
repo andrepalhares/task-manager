@@ -26,7 +26,7 @@ public class LoginUserUseCaseTests
     {
         var input = new LoginUserInput("jane@example.com", "password123");
         var userId = Guid.NewGuid();
-        var user = User.Create(input.Email, "hashed_password", "Jane Doe");
+        var user = UserEntity.Create(input.Email, "hashed_password", "Jane Doe");
         
         _userRepository.GetByEmailAsync(input.Email, default).Returns(user);
         _passwordHasher.Verify(input.Password, user.PasswordHash).Returns(true);
@@ -45,7 +45,7 @@ public class LoginUserUseCaseTests
     public async Task ExecuteAsync_WithValidCredentials_DoesNotIncludeUserFieldsInOutput()
     {
         var input = new LoginUserInput("jane@example.com", "password123");
-        var user = User.Create(input.Email, "hashed_password", "Jane Doe");
+        var user = UserEntity.Create(input.Email, "hashed_password", "Jane Doe");
 
         _userRepository.GetByEmailAsync(input.Email, default).Returns(user);
         _passwordHasher.Verify(input.Password, user.PasswordHash).Returns(true);
@@ -64,7 +64,7 @@ public class LoginUserUseCaseTests
     public async Task ExecuteAsync_WithUnknownEmail_ThrowsUserNotFoundException()
     {
         var input = new LoginUserInput("unknown@example.com", "password123");
-        _userRepository.GetByEmailAsync(input.Email, default).Returns((User?)null);
+        _userRepository.GetByEmailAsync(input.Email, default).Returns((UserEntity?)null);
 
         await Should.ThrowAsync<UserNotFoundException>(
             () => _useCase.ExecuteAsync(input));
@@ -74,7 +74,7 @@ public class LoginUserUseCaseTests
     public async Task ExecuteAsync_WithWrongPassword_ThrowsInvalidPasswordException()
     {
         var input = new LoginUserInput("jane@example.com", "wrongpassword");
-        var user = User.Create(input.Email, "hashed_password", "Jane Doe");
+        var user = UserEntity.Create(input.Email, "hashed_password", "Jane Doe");
         
         _userRepository.GetByEmailAsync(input.Email, default).Returns(user);
         _passwordHasher.Verify(input.Password, user.PasswordHash).Returns(false);
@@ -87,7 +87,7 @@ public class LoginUserUseCaseTests
     public async Task ExecuteAsync_WithWrongPassword_DoesNotCallTokenService()
     {
         var input = new LoginUserInput("jane@example.com", "wrongpassword");
-        var user = User.Create(input.Email, "hashed_password", "Jane Doe");
+        var user = UserEntity.Create(input.Email, "hashed_password", "Jane Doe");
         
         _userRepository.GetByEmailAsync(input.Email, default).Returns(user);
         _passwordHasher.Verify(input.Password, user.PasswordHash).Returns(false);
@@ -100,7 +100,7 @@ public class LoginUserUseCaseTests
         {
         }
 
-        _tokenService.DidNotReceive().CreateToken(Arg.Any<User>());
+        _tokenService.DidNotReceive().CreateToken(Arg.Any<UserEntity>());
     }
 
     [Fact]

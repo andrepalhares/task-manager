@@ -26,7 +26,7 @@ public sealed class CreateTaskUseCase : IUseCase<CreateTaskInput, CreateTaskOutp
     {
         await _validator.ValidateAndThrowAsync(input, cancellationToken);
 
-        var task = TaskItem.Create(
+        var task = TaskEntity.Create(
             input.Title,
             input.Description,
             input.Status,

@@ -25,7 +25,7 @@ public sealed class RegisterUserUseCase : IUseCase<RegisterUserInput, RegisterUs
         await _validator.ValidateAndThrowAsync(command, cancellationToken);
 
         var hash = _passwordHasher.Hash(command.Password);
-        var user = User.Create(command.Email, hash, command.Name);
+        var user = UserEntity.Create(command.Email, hash, command.Name);
         await _usersRepository.AddAsync(user, cancellationToken);
 
         return new RegisterUserOutput(user.Id, user.Email, user.Name);

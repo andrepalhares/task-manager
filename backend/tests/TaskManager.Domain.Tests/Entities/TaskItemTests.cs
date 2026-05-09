@@ -4,7 +4,7 @@ using TaskManager.Domain.Entities;
 
 namespace TaskManager.Domain.Tests.Entities;
 
-public class TaskItemTests
+public class TaskEntityTests
 {
     [Fact]
     public void Create_WithValidArgs_SetsAllProperties_AndGeneratesNewId()
@@ -17,7 +17,7 @@ public class TaskItemTests
         var dueDate = DateTime.UtcNow.AddDays(1);
 
         // Act
-        var task = TaskItem.Create(title, description, status, dueDate, userId);
+        var task = TaskEntity.Create(title, description, status, dueDate, userId);
 
         // Assert
         task.Id.ShouldNotBe(Guid.Empty);
@@ -35,7 +35,7 @@ public class TaskItemTests
         var userId = Guid.NewGuid();
 
         // Act & Assert
-        Should.Throw<ArgumentException>(() => TaskItem.Create("", null, DomainTaskStatus.Pending, null, userId));
+        Should.Throw<ArgumentException>(() => TaskEntity.Create("", null, DomainTaskStatus.Pending, null, userId));
     }
 
     [Fact]
@@ -45,14 +45,14 @@ public class TaskItemTests
         var userId = Guid.NewGuid();
 
         // Act & Assert
-        Should.Throw<ArgumentException>(() => TaskItem.Create("   ", null, DomainTaskStatus.Pending, null, userId));
+        Should.Throw<ArgumentException>(() => TaskEntity.Create("   ", null, DomainTaskStatus.Pending, null, userId));
     }
 
     [Fact]
     public void Create_WithEmptyUserId_ThrowsArgumentException()
     {
         // Act & Assert
-        Should.Throw<ArgumentException>(() => TaskItem.Create("Title", null, DomainTaskStatus.Pending, null, Guid.Empty));
+        Should.Throw<ArgumentException>(() => TaskEntity.Create("Title", null, DomainTaskStatus.Pending, null, Guid.Empty));
     }
 
     [Fact]
@@ -62,7 +62,7 @@ public class TaskItemTests
         var userId = Guid.NewGuid();
 
         // Act
-        var task = TaskItem.Create("Title", null, DomainTaskStatus.Pending, null, userId);
+        var task = TaskEntity.Create("Title", null, DomainTaskStatus.Pending, null, userId);
 
         // Assert
         task.Description.ShouldBeNull();
@@ -75,7 +75,7 @@ public class TaskItemTests
         var userId = Guid.NewGuid();
 
         // Act
-        var task = TaskItem.Create("Title", null, DomainTaskStatus.Pending, null, userId);
+        var task = TaskEntity.Create("Title", null, DomainTaskStatus.Pending, null, userId);
 
         // Assert
         task.DueDate.ShouldBeNull();
@@ -85,7 +85,7 @@ public class TaskItemTests
     public void Update_ChangesAllMutableFields()
     {
         // Arrange
-        var task = TaskItem.Create("Original Title", "Original Description", DomainTaskStatus.Pending, null, Guid.NewGuid());
+        var task = TaskEntity.Create("Original Title", "Original Description", DomainTaskStatus.Pending, null, Guid.NewGuid());
         var newTitle = "Updated Title";
         var newDescription = "Updated Description";
         var newStatus = DomainTaskStatus.InProgress;
@@ -105,7 +105,7 @@ public class TaskItemTests
     public void Update_WithEmptyTitle_ThrowsArgumentException()
     {
         // Arrange
-        var task = TaskItem.Create("Title", null, DomainTaskStatus.Pending, null, Guid.NewGuid());
+        var task = TaskEntity.Create("Title", null, DomainTaskStatus.Pending, null, Guid.NewGuid());
 
         // Act & Assert
         Should.Throw<ArgumentException>(() => task.Update("", null, DomainTaskStatus.Pending, null));
@@ -120,7 +120,7 @@ public class TaskItemTests
         var title = "Test Task";
 
         // Act
-        var task = TaskItem.Rehydrate(taskId, title, null, DomainTaskStatus.Pending, null, userId);
+        var task = TaskEntity.Rehydrate(taskId, title, null, DomainTaskStatus.Pending, null, userId);
 
         // Assert
         task.Id.ShouldBe(taskId);

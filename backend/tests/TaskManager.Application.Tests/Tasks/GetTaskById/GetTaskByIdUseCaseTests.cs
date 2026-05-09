@@ -25,7 +25,7 @@ public class GetTaskByIdUseCaseTests
         // Arrange
         var userId = Guid.NewGuid();
         var taskId = Guid.NewGuid();
-        var task = TaskItem.Create("Test Task", null, DomainTaskStatus.Pending, null, userId);
+        var task = TaskEntity.Create("Test Task", null, DomainTaskStatus.Pending, null, userId);
         _repositorySubstitute.GetByIdAsync(taskId, Arg.Any<CancellationToken>()).Returns(task);
         _currentUserSubstitute.UserId.Returns(userId);
 
@@ -42,7 +42,7 @@ public class GetTaskByIdUseCaseTests
     {
         // Arrange
         var taskId = Guid.NewGuid();
-        _repositorySubstitute.GetByIdAsync(taskId, Arg.Any<CancellationToken>()).Returns((TaskItem?)null);
+        _repositorySubstitute.GetByIdAsync(taskId, Arg.Any<CancellationToken>()).Returns((TaskEntity?)null);
 
         // Act & Assert
         var ex = await Should.ThrowAsync<TaskNotFoundException>(() =>
@@ -57,7 +57,7 @@ public class GetTaskByIdUseCaseTests
         var ownerId = Guid.NewGuid();
         var currentUserId = Guid.NewGuid();
         var taskId = Guid.NewGuid();
-        var task = TaskItem.Create("Test Task", null, DomainTaskStatus.Pending, null, ownerId);
+        var task = TaskEntity.Create("Test Task", null, DomainTaskStatus.Pending, null, ownerId);
         _repositorySubstitute.GetByIdAsync(taskId, Arg.Any<CancellationToken>()).Returns(task);
         _currentUserSubstitute.UserId.Returns(currentUserId);
 

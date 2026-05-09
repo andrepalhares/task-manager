@@ -11,17 +11,17 @@ public sealed class UserRepository : IUserRepository
     // See: https://www.mongodb.com/docs/manual/reference/error-codes/
     private const int DuplicateKeyErrorCode = 11000;
 
-    private readonly IMongoCollection<User> _collection;
+    private readonly IMongoCollection<UserEntity> _collection;
 
     public UserRepository(IMongoDatabase database)
     {
-        _collection = database.GetCollection<User>("users");
+        _collection = database.GetCollection<UserEntity>("users");
     }
 
-    public async Task<User?> GetByEmailAsync(string email, CancellationToken cancellationToken = default)
+    public async Task<UserEntity?> GetByEmailAsync(string email, CancellationToken cancellationToken = default)
         => await _collection.Find(u => u.Email == email).FirstOrDefaultAsync(cancellationToken);
 
-    public async Task AddAsync(User user, CancellationToken cancellationToken = default)
+    public async Task AddAsync(UserEntity user, CancellationToken cancellationToken = default)
     {
         try
         {

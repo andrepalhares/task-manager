@@ -10,6 +10,6 @@ public sealed record TaskDto(
     DateTime? DueDate,
     Guid UserId)
 {
-    public static TaskDto FromEntity(TaskItem task)
+    public static TaskDto FromEntity(TaskEntity task)
         => new(task.Id, task.Title, task.Description, task.Status.ToString(), task.DueDate, task.UserId);
 }
